@@ -85,9 +85,7 @@ ro.qcom.screencolor=1
 ro.qualcomm.cabl=0
 
 # Storage
-ro.crypto.fuse_sdcard=true
 ro.sys.umsdirtyratio=20
-persist.fuse_sdcard=true
 
 # Telephony
 DEVICE_PROVISIONED=1
