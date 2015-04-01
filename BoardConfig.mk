@@ -118,18 +118,7 @@ COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += \
-    device/huawei/y560/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    kernel.te \
-    mediaserver.te \
-    mm-qcamerad.te \
-    property.te \
-    property_contexts \
-    system_server.te
+BOARD_SEPOLICY_DIRS += device/huawei/y560/sepolicy
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun1/file
