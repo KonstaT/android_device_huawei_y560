@@ -94,9 +94,11 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libdashplayer \
+    libextmedia_jni \
     libOmxCore \
     libOmxVdec \
     libOmxVenc \
+    libqcmediaplayer \
     libstagefrighthw \
     qcmediaplayer
 
