@@ -62,7 +62,7 @@
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="requires-loaded-to-idle-after-allocation" />
             <Limit name="size" min="32x32" max="800x480" />
-            <Limit name="alignment" value="2x2" />
+            <Limit name="alignment" value="4x4" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="45000" />
             <Limit name="bitrate" range="1-2000000" />
@@ -151,7 +151,7 @@
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
             <Limit name="size" min="16x16" max="854x480" />
-            <Limit name="alignment" value="2x2" />
+            <Limit name="alignment" value="4x4" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="48600" />
             <Limit name="bitrate" range="1-2000000" />
