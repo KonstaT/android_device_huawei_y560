@@ -352,6 +352,7 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
+    group system
     disabled
 
 on property:ro.use_data_netmgrd=false
