@@ -290,3 +290,4 @@ ro.config.show_pin_change=true
 ro.config.hw_coop_calllog=com.android.contacts;com.android.contacts.activities.DialtactsActivity
 ro.config.show_hint_enter_pin=true
 ro.crypto.fuse_sdcard=true
+persist.data.qmi.adb_logmask=0
