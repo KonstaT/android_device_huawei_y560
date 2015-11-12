@@ -61,10 +61,6 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
-# Filesystem tools
-PRODUCT_PACKAGES += \
-    setup_fs
-
 # FM radio
 PRODUCT_PACKAGES += \
     FM2 \
