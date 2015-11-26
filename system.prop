@@ -60,7 +60,6 @@ media.stagefright.enable-aac=true
 media.stagefright.enable-qcp=true
 media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
-mm.enable.qcom_parser=3405823
 mmp.enable.3g2=true
 persist.mm.sta.enable=1
 
