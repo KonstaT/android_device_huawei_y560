@@ -1,10 +1,11 @@
-# Copyright (C) 2011 The Android Open-Source Project
+#
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,110 +13,121 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# config.mk
-#
-# Product-specific compile-time definitions.
-#
 
-ifeq ($(TARGET_ARCH),)
-TARGET_ARCH := arm
-endif
+LOCAL_PATH := device/huawei/y560
 
-BOARD_USES_GENERIC_AUDIO := true
-USE_CAMERA_STUB := true
+# Platform
+TARGET_NO_BOOTLOADER := true
 
--include $(QCPATH)/common/msm8909/BoardConfigVendor.mk
-TARGET_COMPILE_WITH_MSM_KERNEL := true
-#TODO: Fix-me: Setting TARGET_HAVE_HDMI_OUT to false
-# to get rid of compilation error.
-TARGET_HAVE_HDMI_OUT := false
-TARGET_USES_OVERLAY := true
-TARGET_USES_PCI_RCS := false
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_NO_BOOTLOADER := false
-TARGET_NO_KERNEL := false
-TARGET_NO_RADIOIMAGE := true
-TARGET_NO_RPC := true
-GET_FRAMEBUFFER_FORMAT_FROM_HWC := true
-
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_CPU_ABI  := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a7
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-TARGET_HARDWARE_3D := false
 TARGET_BOARD_PLATFORM := msm8909
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno304
 TARGET_BOOTLOADER_BOARD_NAME := msm8909
 
-BOARD_KERNEL_BASE        := 0x80000000
-BOARD_KERNEL_PAGESIZE    := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a7
 
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 
-# Support to build images for 2K NAND page
-BOARD_KERNEL_2KPAGESIZE := 2048
-BOARD_KERNEL_2KSPARESIZE := 64
-
-# Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
-# Increase the size if shaders of size greater than 12KB are used.
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-
-# Maximum GLES shader cache size for each app to store the compiled shader
-# binaries. Decrease the size if RAM or Flash Storage size is a limitation
-# of the device.
-MAX_EGL_CACHE_SIZE := 2048*1024
-
-# Use signed boot and recovery image
-#TARGET_BOOTIMG_SIGNED := true
-
-TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
-
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+# Inline kernel building
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+TARGET_KERNEL_CONFIG := msm8909-y560_defconfig
+TARGET_KERNEL_SOURCE := kernel/huawei/msm8909
 
-BOARD_EGL_CFG := device/qcom/msm8909/egl.cfg
+# Audio
+AUDIO_FEATURE_ENABLED_FM := true
+#AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+BOARD_USES_ALSA_AUDIO := true
 
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x01000000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x01000000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1288491008
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1860648960
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+
+# Build
+TARGET_SYSTEMIMAGE_USE_SQUISHER := true
+
+# Camera
+USE_DEVICE_SPECIFIC_CAMERA := true
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
+
+# FM radio
+#TARGET_QCOM_NO_FM_FIRMWARE := true
+
+# Graphics
+BOARD_EGL_CFG := $(LOCAL_PATH)/prebuilt/system/lib/egl/egl.cfg
+GET_FRAMEBUFFER_FORMAT_FROM_HWC := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+
+# Hardware tunables framework
+#BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+# Memory
+MALLOC_IMPL := dlmalloc
+
+# Partition sizes
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x02000000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x02000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2053531648
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5065636864 # (5065653248 - 16384)
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
+# Power
+TARGET_POWERHAL_VARIANT := qcom
 
-# Add NON-HLOS files for ota upgrade
-ADD_RADIO_FILES ?= true
+# QCOM hardware
+BOARD_USES_QCOM_HARDWARE := true
 
-# Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := true
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
+TARGET_USERIMAGES_USE_EXT4 := true
+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
-TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API :=true
-TARGET_USES_QCOM_BSP := true
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
 
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
-TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun1/file
 
-#Add support for firmare upgrade on msm8909
-HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE := true
-
-TARGET_LDPRELOAD := libNimsWrap.so
-
-#Enable peripheral manager
-TARGET_PER_MGR_ENABLED := true
-
-#Use dlmalloc instead of jemalloc for mallocs
-MALLOC_IMPL := dlmalloc
-
-#Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION := true
+# Wifi
+BOARD_HAS_QCOM_WLAN := true
+BOARD_HAS_QCOM_WLAN_SDK := true
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
