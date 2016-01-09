@@ -27,8 +27,6 @@
 #
 #
 
-import init.carrier.rc
-
 on early-init
     mkdir /firmware 0771 system system
     mkdir /system 0777 root root
@@ -51,7 +49,6 @@ on fs
 
     wait /dev/block/bootdevice/by-name/modem
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
-    #write /sys/kernel/boot_adsp/boot 1
 
 #added by litao begin
     start qcom-serialno-sh
@@ -91,21 +88,6 @@ on property:persist.usb.chgdisabled=1
 
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
-
-service qrngd /system/bin/qrngd -f
-   class main
-   user root
-   group root
-
-service qrngp /system/bin/qrngp -f
-   class main
-   user root
-   group root
-   oneshot
-   disabled
-
-on property:sys.boot_completed=1
-   start qrngp
 
 service qseecomd /system/bin/qseecomd
    class core
@@ -148,7 +130,6 @@ on charger
 
 on boot
     start rmt_storage
-    insmod /system/lib/modules/adsprpc.ko
 
 service wcnss-service /system/bin/wcnss_service
     class main
@@ -173,67 +154,6 @@ on property:init.svc.surfaceflinger=stopped
 
 on property:init.svc.surfaceflinger=running
     start ppd
-
-service imsstarter /system/bin/sh /system/etc/init.qti.ims.sh
-    class main
-    oneshot
-
-on property:vold.decrypt=trigger_restart_framework
-    start imsstarter
-
-service imsqmidaemon /system/bin/imsqmidaemon
-    class main
-    user system
-    socket ims_qmid stream 0660 system radio
-    group radio net_raw log qcom_diag
-    disabled
-
-on property:service.qti.ims.enabled=1
-    start imsqmidaemon
-
-service imsdatadaemon /system/bin/imsdatadaemon
-    class main
-    user system
-    socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log qcom_diag net_admin
-    disabled
-
-on property:sys.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
-
-service ims_rtp_daemon /system/bin/ims_rtp_daemon
-   class main
-   user system
-   socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag qcom_diag log
-   disabled
-
-service imscmservice /system/bin/imscmservice
-   class main
-   user system
-   group radio net_raw diag qcom_diag log
-   disabled
-
-on property:sys.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start imscmservice
-
-service touch /system/bin/sh /system/etc/init.qti.synaptics_dsx_qhd.sh
-   class late_start
-   user root
-   group root
-   oneshot
-   disabled
-service dts_configurator /system/bin/dts_configurator
-   class main
-   user system
-   group system
-   oneshot
-on property:persist.sys.synaptics_dsx.qhd=true
-   start touch
-
-on property:persist.sys.synaptics_dsx.qhd=false
-   stop touch
 
 #added by litao begin
 service qcom-serialno-sh /system/bin/sh /init.qcom.serialno.sh
