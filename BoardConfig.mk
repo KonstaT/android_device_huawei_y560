@@ -80,7 +80,7 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
 # Hardware tunables framework
-#BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
