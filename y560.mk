@@ -81,8 +81,8 @@ PRODUCT_PACKAGES += \
     keystore.msm8909
 
 # Lights
-#PRODUCT_PACKAGES += \
-#    lights.msm8909
+PRODUCT_PACKAGES += \
+    lights.msm8909
 
 # Misc
 PRODUCT_PACKAGES += \

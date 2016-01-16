@@ -154,9 +154,6 @@ vendor/lib/libxtwifi_zpp_adaptor.so
 # Huawei
 bin/serialnoread
 
-# Lights
-lib/hw/lights.msm8909.so
-
 # OMX
 vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
