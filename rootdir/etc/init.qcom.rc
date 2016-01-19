@@ -37,25 +37,38 @@ on init
     mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
+    #Modified by wuqijun for huawei sdcard fuse switch (QL70X) SW00121856 2015-03-17 begin
+    mkdir /storage 0755 system sdcard_r
     mkdir /storage/emulated 0555 root root
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
-    mkdir /mnt/media_rw/uicc0 0700 media_rw media_rw
-    mkdir /mnt/media_rw/uicc1 0700 media_rw media_rw
+    #mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
+    #mkdir /mnt/media_rw/uicc0 0700 media_rw media_rw
+    #mkdir /mnt/media_rw/uicc1 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0700 root root
     mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/uicc0 0700 root root
-    mkdir /storage/uicc1 0700 root root
-    mkdir /storage/usbotg 0700 root root
+    #mkdir /storage/uicc0 0700 root root
+    #mkdir /storage/uicc1 0700 root root
+    #mkdir /storage/usbotg 0700 root root
+    #Add By liyichong to add huawei ThemeManager (QW702) SW00118646 2015-03-09
+    mkdir /system/themes 0771 system system
 
-    export EXTERNAL_STORAGE /storage/emulated/legacy
+    mkdir /storage/sdcardtmp 0700 root root
+
+    #export EXTERNAL_STORAGE /storage/emulated/legacy
+    export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /mnt/shell/emulated/0 /storage/emulated/0
+    #symlink /storage/emulated/legacy /sdcard
+    #symlink /storage/emulated/legacy /mnt/sdcard
+    #symlink /storage/emulated/legacy /storage/sdcard0
+    #Add By wuqijun for cts fail (QW702) SW00123784 2015-03-19
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on early-boot
@@ -92,6 +105,36 @@ on boot
     chmod 0660 /dev/ttyHS2
     chown bluetooth bluetooth /dev/ttyHS2
 
+#added by litao to modify permission of TP sensor node 2015-02-02 begin
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/chip_type
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/data
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/debug
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/driver_version
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/platform_version
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/test
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_fail_channel
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_log
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_scope
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/update
+    chown system system /sys/devices/virtual/ms-touchscreen-msg20xx/device/version
+
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/chip_type
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/data
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/debug
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/driver_version
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/platform_version
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/test
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_fail_channel
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_log
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/test_scope
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/update
+    chmod 664 /sys/devices/virtual/ms-touchscreen-msg20xx/device/version
+#added by litao to modify permission of TP sensor node 2015-02-02 end
+
+    # added by xiongzuan for mitigation 2015-02-13 begin
+    chown radio root /sys/class/power_supply/battery/system_temp_level
+    # added by xiongzuan for mitigation 2015-02-13 end
+
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/device/extldo
     chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
 
@@ -108,6 +151,7 @@ on boot
     mkdir /persist/drm 0770 system system
 
     setprop wifi.interface wlan0
+    setprop vold.sys.sdcard.switch ${persist.sys.sdcard.switch}
 
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -479,12 +523,14 @@ service btsnoop /system/bin/btsnoop
    disabled
    oneshot
 
-service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
+#liuyk change service name from ftmd to ftm_ffbm begin
+service ftm_ffbm /system/bin/logwrapper /system/bin/ftmdaemon
     class late_start
     user root
     group bluetooth net_bt_admin misc net_bt_stack qcom_diag
     disabled
     oneshot
+#liuyk change service name from ftmd to ftm_ffbm end
 
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
@@ -624,17 +670,14 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service ptt_socket_app /system/bin/ptt_socket_app -d
+#liuyk disable ptt_socket_app start during system booting begin
+service ptt_ffbm /system/bin/ptt_socket_app -d
     class main
-    user root
-    group root
-    oneshot
-
-service ptt_ffbm /system/bin/ptt_socket_app -f -d
     user root
     group root
     disabled
     oneshot
+#liuyk disable ptt_socket_app start during system booting end
 
 service cnss_diag /system/bin/cnss_diag --q
     class main
@@ -790,23 +833,23 @@ service ril-daemon3 /system/bin/rild -c 3
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
-service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
-    class late_start
-    user root
-    disabled
-    oneshot
+#service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
+#    class late_start
+#    user root
+#    disabled
+#   oneshot
 
-service usb_uicc_daemon /system/bin/usb_uicc_client
-    class main
-    user system
-    group system log net_raw
-    oneshot
+#service usb_uicc_daemon /system/bin/usb_uicc_client
+#    class main
+#    user system
+#    group system log net_raw
+#    oneshot
 
-on property:sys.usb_uicc.enabled=1
-    start usb_uicc_enable
+#on property:sys.usb_uicc.enabled=1
+#    start usb_uicc_enable
 
-on property:sys.usb_uicc.enabled=0
-    start usb_uicc_enable
+#on property:sys.usb_uicc.enabled=0
+#    start usb_uicc_enable
 
 service profiler_daemon /system/bin/profiler_daemon
     class late_start
@@ -815,28 +858,37 @@ service profiler_daemon /system/bin/profiler_daemon
     disabled
 
 # virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /data/media /mnt/shell/emulated
     class late_start
+	disabled
+
+service sdcard2 /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+	disabled
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
     disabled
 
-service fuse_uicc0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc0 /storage/uicc0
-    class late_start
-
-service fuse_uicc1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/uicc1 /storage/uicc1
-    class late_start
-    disabled
-
-service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbotg /storage/usbotg
-    class late_start
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
     disabled
 
 # Binding fuse mount point to /storage/emulated/legacy
+#Add By wuqijun for cts fail (QW702) SW00123784 2015-03-19 begin
 on property:init.svc.sdcard=running
     wait /mnt/shell/emulated/0
     mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+#Add By wuqijun for cts fail (QW702) SW00123784 2015-03-19 end
+
+on property:runtime.mountfuse=1
+    start sdcard
+    wait /mnt/shell/emulated/0
+    mount none /mnt/shell/emulated/0 /storage/sdcard1 bind
+
+on property:runtime.mountfuse=0
+    start sdcard2
+    wait /mnt/shell/emulated/0
+    mount none /mnt/shell/emulated/0 /storage/sdcard0 bind
+#Modified by wuqijun for huawei sdcard fuse switch (QL70X) SW00121856 2015-03-17 end
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth

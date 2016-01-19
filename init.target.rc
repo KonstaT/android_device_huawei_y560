@@ -53,6 +53,12 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
     #write /sys/kernel/boot_adsp/boot 1
 
+#added by litao begin
+    start qcom-serialno-sh
+    chmod 660 /persist/serialno
+    chown system system /persist/serialno
+#added by litao end
+
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -63,11 +69,13 @@ on post-fs-data
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
 
+#Modified Begin: by hanjianfeng for mm-qcamera-daemon start time 20150609
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
-    class late_start
+    class main
     user camera
     group camera system inet input graphics
+#Modified End: by hanjianfeng for mm-qcamera-daemon start time 20150609
 
 #enable zram
 on property:ro.config.zram=true
@@ -226,3 +234,11 @@ on property:persist.sys.synaptics_dsx.qhd=true
 
 on property:persist.sys.synaptics_dsx.qhd=false
    stop touch
+
+#added by litao begin
+service qcom-serialno-sh /system/bin/sh /init.qcom.serialno.sh
+    class main
+    user root
+    oneshot
+    disabled
+#added by litao end
