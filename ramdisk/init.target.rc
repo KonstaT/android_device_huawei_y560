@@ -34,6 +34,7 @@ on early-init
 
 on fs
     mount_all fstab.qcom
+    swapon_all fstab.qcom
 
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
@@ -61,11 +62,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 #Modified End: by hanjianfeng for mm-qcamera-daemon start time 20150609
-
-#enable zram
-on property:ro.config.zram=true
-    swapon_all fstab.qcom
-    write /proc/sys/vm/swappiness 100
 
 on init
    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
@@ -118,6 +114,7 @@ on charger
 
 on boot
     start rmt_storage
+    write /proc/sys/vm/swappiness 100
 
 service wcnss-service /system/bin/wcnss_service
     class main

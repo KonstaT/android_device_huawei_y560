@@ -12,4 +12,4 @@
 /dev/block/bootdevice/by-name/boot      /boot        emmc    defaults                                                                                      defaults
 /dev/block/bootdevice/by-name/recovery  /recovery    emmc    defaults                                                                                      defaults
 /devices/soc.0/7864900.sdhci/mmc_host   auto         auto    defaults                                                                                      voldmanaged=sdcard1:auto,noemulatedsd
-/dev/block/zram0                        none         swap    defaults                                                                                      zramsize=536870912
+/dev/block/zram0                        none         swap    defaults                                                                                      zramsize=268435456
