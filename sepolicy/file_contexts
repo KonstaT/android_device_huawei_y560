@@ -1,0 +1,6 @@
+# FRP
+/dev/block/bootdevice/by-name/config                        u:object_r:frp_block_device:s0
+
+# sensors
+/persist/acc_avg                                            u:object_r:sensors_persist_file:s0
+/persist/prox_avg                                           u:object_r:sensors_persist_file:s0

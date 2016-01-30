@@ -1,0 +1,3 @@
+# sensors
+allow system_server sensors_persist_file:dir r_dir_perms;
+allow system_server sensors_persist_file:file rw_file_perms;
