@@ -126,6 +126,7 @@ BOARD_SEPOLICY_UNION += \
     file_contexts \
     kernel.te \
     mediaserver.te \
+    mm-qcamerad.te \
     property.te \
     property_contexts \
     system_server.te
