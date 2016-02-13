@@ -168,7 +168,7 @@ vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libSHIMDivxDrm.so
 
 # Perf
-bin/perfd
+vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
 
 # Postprocessing
@@ -232,7 +232,7 @@ vendor/lib/libcalmodule_common.so
 vendor/lib/libcalmodule_gyroscope.so
 
 # Thermal
-bin/thermal-engine
+vendor/bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
