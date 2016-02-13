@@ -242,15 +242,6 @@
     the IMS connection -->
     <bool name="useImsAlwaysForEmergencyCall">false</bool>
 
-    <!-- Configuartion to support SIM refresh in STK command for dual mode card.-->
-    <bool name="config_sim_refresh_for_dual_mode_card">true</bool>
-
-    <!-- monitor locale change -->
-    <bool name="config_monitor_locale_change">true</bool>
-
-    <!-- display for radio tech -->
-    <bool name="config_display_rat">true</bool>
-
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
