@@ -118,38 +118,16 @@ vendor/lib/libssd.so
 bin/fm_qsoc_patches
 
 # GPS
-bin/gpsone_daemon
-bin/location-mq
-bin/loc_launcher
-bin/lowi-server
-bin/xtwifi-client
-bin/xtwifi-inet-agent
-etc/permissions/com.qualcomm.location.xml
-etc/cacert_location.pem
 etc/flp.conf
 etc/izat.conf
-etc/lowi.conf
 etc/quipc.conf
 etc/sap.conf
-etc/xtra_root_cert.pem
-etc/xtwifi.conf
 lib/libloc_api_v02.so
 lib/libloc_ds_api.so
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
 vendor/lib/hw/flp.default.so
-vendor/lib/libasn1cper.so
-vendor/lib/libasn1crt.so
-vendor/lib/libasn1crtx.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
-vendor/lib/liblocationservice.so
-vendor/lib/liblowi_client.so
-vendor/lib/libquipc_os_api.so
-vendor/lib/libulp2.so
-vendor/lib/libxtadapter.so
-vendor/lib/libxtwifi_ulp_adaptor.so
-vendor/lib/libxtwifi_zpp_adaptor.so
 
 # Huawei
 bin/serialnoread
