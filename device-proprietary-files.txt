@@ -133,10 +133,12 @@ vendor/lib/liblbs_core.so
 bin/serialnoread
 
 # OMX
+lib/libOmxSwVencMpeg4.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
 vendor/lib/libmm-color-convertor.so
+vendor/lib/libMpeg4SwEncoder.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxIttiamVdec.so
