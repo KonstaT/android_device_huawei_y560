@@ -61,6 +61,9 @@ lib/libmm-qcamera.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
+vendor/lib/libactuator_dw9714a_as1400382_camcorder.so
+vendor/lib/libactuator_dw9714a_as1400382_camera.so
+vendor/lib/libactuator_dw9714a_as1400382.so
 vendor/lib/libactuator_dw9714_f140858r_camcorder.so
 vendor/lib/libactuator_dw9714_f140858r_camera.so
 vendor/lib/libactuator_dw9714_f140858r.so
@@ -79,6 +82,11 @@ vendor/lib/libchromatix_hi544_qunhui_baln_40_common.so
 vendor/lib/libchromatix_hi544_qunhui_baln_40_default_video.so
 vendor/lib/libchromatix_hi544_qunhui_baln_40_preview.so
 vendor/lib/libchromatix_hi544_qunhui_baln_40_snapshot.so
+vendor/lib/libchromatix_ov8858_chicony_baly_20_common.so
+vendor/lib/libchromatix_ov8858_chicony_baly_20_default_video.so
+vendor/lib/libchromatix_ov8858_chicony_baly_20_liveshot.so
+vendor/lib/libchromatix_ov8858_chicony_baly_20_preview.so
+vendor/lib/libchromatix_ov8858_chicony_baly_20_snapshot.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera_faceproc.so
@@ -88,6 +96,8 @@ vendor/lib/libmmcamera_hdr_lib.so
 vendor/lib/libmmcamera_hi544_gz_bahn_40.so
 vendor/lib/libmmcamera_hi544_qunhui_baln_40.so
 vendor/lib/libmmcamera_imglib.so
+vendor/lib/libmmcamera_ov8858_chicony_baly_20.so
+vendor/lib/libmmcamera_ov8858_gdgr140568r_eeprom.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_wavelet_lib.so
