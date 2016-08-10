@@ -42,10 +42,6 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     tinymix
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
-
 # CNE
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
