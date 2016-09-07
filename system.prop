@@ -90,6 +90,9 @@ ro.qualcomm.cabl=0
 # Scheduler
 sys.io.scheduler=bfq
 
+# Storage
+ro.sys.sdcardfs=true
+
 # Telephony
 DEVICE_PROVISIONED=1
 persist.data.dont_use_epc=true
