@@ -24,6 +24,9 @@ voice.voip.conc.disabled=true
 # Battery
 ro.cutoff_voltage_mv=3200
 
+# Bluetooth
+qcom.bluetooth.soc=smd
+
 # Camera
 persist.camera.longshot.stages=1
 
