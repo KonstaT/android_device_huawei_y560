@@ -41,14 +41,14 @@
             <Limit name="measured-frame-rate-1920x1080" range="12-12" />
         </MediaCodec>
        <MediaCodec name="OMX.google.h263.encoder" type="video/3gpp" update="true">
-            <Limit name="measured-frame-rate-176x144" range="431-431" />
+            <Limit name="measured-frame-rate-176x144" range="181-181" />
         </MediaCodec>
         <MediaCodec name="OMX.google.mpeg4.encoder" type="video/mp4v-es" update="true">
-            <Limit name="measured-frame-rate-176x144" range="460-460" />
+            <Limit name="measured-frame-rate-176x144" range="161-161" />
         </MediaCodec>
         <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" update="true">
-            <Limit name="measured-frame-rate-320x180" range="297-297" />
-            <Limit name="measured-frame-rate-640x360" range="118-118" />
+            <Limit name="measured-frame-rate-320x180" range="50-50" />
+            <Limit name="measured-frame-rate-640x360" range="37-37" />
             <Limit name="measured-frame-rate-1280x720" range="32-32" />
             <Limit name="measured-frame-rate-1920x1080" range="13-13" />
         </MediaCodec>
@@ -62,43 +62,50 @@
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.hevc" type="video/hevc" update="true">
             <Limit name="measured-frame-rate-352x288" range="418-418"/>
+            <Limit name="measured-frame-rate-640x360" range="222-222" />
             <Limit name="measured-frame-rate-720x480" range="343-343" />
-            <Limit name="measured-frame-rate-1280x720" range="200-200" />
+            <Limit name="measured-frame-rate-1280x720" range="81-81" />
             <Limit name="measured-frame-rate-1920x1080" range="66-66" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.vp8" type="video/x-vnd.on2.vp8" update="true">
-            <Limit name="measured-frame-rate-320x240" range="586-586" />
+            <Limit name="measured-frame-rate-320x180" range="300-300" />
             <Limit name="measured-frame-rate-640x360" range="535-535" />
             <Limit name="measured-frame-rate-1280x720" range="275-275" />
             <Limit name="measured-frame-rate-1920x1080" range="161-161" />
         </MediaCodec>
         <MediaCodec name="OMX.google.h264.decoder" type="video/avc" update="true">
-            <Limit name="measured-frame-rate-320x240" range="446-446" />
+            <Limit name="measured-frame-rate-320x240" range="165-165" />
             <Limit name="measured-frame-rate-720x480" range="142-142" />
             <Limit name="measured-frame-rate-1280x720" range="52-52" />
             <Limit name="measured-frame-rate-1920x1080" range="17-17" />
         </MediaCodec>
         <MediaCodec name="OMX.google.h263.decoder" type="video/3gpp" update="true">
-            <Limit name="measured-frame-rate-176x144" range="1174-1174" />
-            <Limit name="measured-frame-rate-352x288" range="617-617" />
+            <Limit name="measured-frame-rate-176x144" range="189-189" />
+            <Limit name="measured-frame-rate-352x288" range="136-136" />
+        </MediaCodec>
+        <MediaCodec name="OMX.google.mpeg4.decoder" update="true">
+            <Type name="video/mp4v-es">
+                <Limit name="measured-frame-rate-176x144" range="340-340" />
+            </Type>
         </MediaCodec>
         <MediaCodec name="OMX.google.hevc.decoder" type="video/hevc" update="true">
             <Limit name="measured-frame-rate-352x288" range="376-376" />
-            <Limit name="measured-frame-rate-720x480" range="260-260" />
-            <Limit name="measured-frame-rate-1280x720" range="104-104" />
+            <Limit name="measured-frame-rate-640x360" range="94-94" />
+            <Limit name="measured-frame-rate-720x480" range="81-81" />
+            <Limit name="measured-frame-rate-1280x720" range="38-38" />
             <Limit name="measured-frame-rate-1920x1080" range="49-49" />
         </MediaCodec>
        <MediaCodec name="OMX.google.vp8.decoder" type="video/x-vnd.on2.vp8" update="true">
-            <Limit name="measured-frame-rate-320x240" range="712-712" />
-            <Limit name="measured-frame-rate-640x360" range="198-198" />
+            <Limit name="measured-frame-rate-320x180" range="305-305" />
+            <Limit name="measured-frame-rate-640x360" range="85-85" />
             <Limit name="measured-frame-rate-1280x720" range="38-38" />
-            <Limit name="measured-frame-rate-1920x1080" range="30-30" />
+            <Limit name="measured-frame-rate-1920x1080" range="8-8" />
         </MediaCodec>
         <MediaCodec name="OMX.google.vp9.decoder" type="video/x-vnd.on2.vp9" update="true">
-            <Limit name="measured-frame-rate-320x240" range="275-275" />
-            <Limit name="measured-frame-rate-640x360" range="233-233" />
+            <Limit name="measured-frame-rate-320x180" range="275-275" />
+            <Limit name="measured-frame-rate-640x360" range="73-73" />
             <Limit name="measured-frame-rate-1280x720" range="63-63" />
-            <Limit name="measured-frame-rate-1920x1080" range="47-47" />
+            <Limit name="measured-frame-rate-1920x1080" range="20-20" />
         </MediaCodec>
         <MediaCodec name="OMX.ittiam.video.decoder.h263" type="video/3gpp" update="true">
             <Limit name="measured-frame-rate-176x144" range="760-760" />
