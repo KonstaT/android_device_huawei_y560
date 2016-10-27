@@ -113,6 +113,7 @@
         </MediaCodec>
         <MediaCodec name="OMX.ittiam.video.decoder.mpeg4" update="true">
             <Type name="video/mp4v-es">
+                <Limit name="measured-frame-rate-176x144" range="370-370" />
                 <Limit name="measured-frame-rate-480x360" range="482-482" />
             </Type>
             <Type name="video/mp4v-esdp">
