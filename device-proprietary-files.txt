@@ -132,9 +132,6 @@ vendor/lib/libQSEEComAPI.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
 
-# FM radio
-bin/fm_qsoc_patches
-
 # GPS
 bin/gpsone_daemon
 bin/location-mq
