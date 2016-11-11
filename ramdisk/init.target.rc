@@ -116,6 +116,9 @@ on boot
     start rmt_storage
     write /proc/sys/vm/swappiness 100
 
+    # vibrator intensity
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+
 service wcnss-service /system/bin/wcnss_service
     class main
     user system
