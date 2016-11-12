@@ -110,6 +110,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
+    libwcnss_qmi \
     wcnss_service
 
 # Ramdisk
