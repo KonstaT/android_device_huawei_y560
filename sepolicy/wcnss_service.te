@@ -1,0 +1,2 @@
+# wcnss - huawei wifi mac file
+allow wcnss_service wcnss_persist_file:file { read getattr open };
