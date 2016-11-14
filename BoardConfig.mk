@@ -85,7 +85,9 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
 # Hardware tunables framework
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+BOARD_HARDWARE_CLASS := \
+    hardware/cyanogen/cmhw \
+    $(LOCAL_PATH)/cmhw
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
