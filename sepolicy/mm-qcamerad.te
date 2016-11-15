@@ -1,4 +1,5 @@
 unix_socket_connect(mm-qcamerad, property, init)
+allow mm-qcamerad system_file:file execmod;
 
 # camera.presnapshot.state property
 allow mm-qcamerad camera_prop:property_service set;
