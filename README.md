@@ -1,4 +1,4 @@
-CyanogenMod 12.1 device configuration for [Huawei Y5](http://www.modaco.com/forums/topic/376808-cyanogenmod-121/).
+CyanogenMod 12.1 device configuration for [Huawei Y5](http://konstakang.com/devices/y560/CM12.1).
 
 How to build:
 -------------
