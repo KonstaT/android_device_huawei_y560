@@ -2,7 +2,7 @@
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 854
 
-# Inherit some common CM stuff.
+# Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
@@ -10,7 +10,7 @@ $(call inherit-product, device/huawei/y560/y560.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := y560
-PRODUCT_NAME := cm_y560
+PRODUCT_NAME := lineage_y560
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Y5
 PRODUCT_MANUFACTURER := Huawei
