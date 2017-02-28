@@ -289,6 +289,6 @@
     <string translatable="false" name="config_radio_access_family">GSM|WCDMA|LTE</string>
 
     <!-- Enable blur support -->
-    <bool name="config_ui_blur_enabled">true</bool>
+    <bool name="config_uiBlurEnabled">true</bool>
 
 </resources>
