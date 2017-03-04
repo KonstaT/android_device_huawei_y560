@@ -442,5 +442,5 @@ service bms-sh /system/bin/sh /init.qcom.bms.sh
 
 service vm_bms /system/bin/vm_bms
     user root
-    group root
+    group root wakelock
     disabled
